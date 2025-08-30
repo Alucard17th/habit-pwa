@@ -1,13 +1,11 @@
 import * as React from "react";
 import {
-  Box, Stack, Typography, TextField, Button, Alert, Dialog, DialogTitle,
+  Stack, Typography, TextField, Button, Alert, Dialog, DialogTitle,
   DialogContent, DialogActions, Snackbar
 } from "@mui/material";
-import { useAuth } from "../context/AuthContext";
 import { usePasswordChange, useProfile } from "../hooks/useProfile";
 
 export default function Profile() {
-  const { user } = useAuth();
   const {
     values, onChange, canSubmit, save, saving, error, fieldErrors
   } = useProfile();

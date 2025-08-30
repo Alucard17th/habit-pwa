@@ -106,9 +106,9 @@ export default function PaywallDialog({ open, onClose, reason }: Props) {
         <Button onClick={onClose} disabled={loading}>
           Not now
         </Button>
-        {/* <Button onClick={onSubscribe} variant="contained" disabled={loading}>
+        <Button onClick={onSubscribe} variant="contained" disabled={loading}>
           {loading ? <CircularProgress size={20} /> : "Continue"}
-        </Button> */}
+        </Button>
         {/* Optional lifetime purchase: */}
         <Button onClick={onBuyLifetime} disabled={loading}>
           Buy lifetime
