@@ -1,0 +1,61 @@
+🔹 1. Polish User Flows (MVP readiness)
+
+Habit Creation / Edit page XXX
+Right now you can create habits, but do you have an edit habit form (name, frequency, target, reminder time)?
+Add a /habit/:id/edit route with MUI form so users can update habits.
+
+Confirm archive/unarchive?  XXX
+Optional, but some users like a confirm step to prevent mistakes.
+
+Better empty states XXX
+Eg. “No habits yet → Create your first habit” with a CTA button.
+
+🔹 2. Notifications / Reminders XXX
+
+Add reminder_time support:
+
+Backend: already on habits table.
+
+Frontend: allow users to set it (time picker).
+
+PWA: show local notification (“Don’t forget to drink water”) at reminder time (use Service Worker + Notifications API).
+
+🔹 3. Analytics & Insights XXX
+
+Weekly/monthly charts (use recharts, already installed).
+Examples: streak history, completion % by week.
+
+Show best streak habit and weakest habit as motivational highlights.
+
+🔹 4. Monetization (important for extra income 💰)
+
+Lock some features behind Pro: 
+
+Example: more than 3 habits → paywall. XXX
+
+Export data as CSV/JSON → Pro only. XXX
+
+Integrate a simple payment flow (Stripe, LemonSqueezy, Gumroad). <!!!!!!!>
+
+Backend: toggle user.is_premium after payment → frontend unlocks features. <!!!!!!!>
+
+🔹 5. PWA polish
+
+Add install prompt and app icon (manifest.json + icons).
+
+Enable service worker caching (serviceWorkerRegistration.register() in index.tsx).
+
+Test offline mode thoroughly (progress logs sync correctly when back online).
+
+🔹 6. Deploy & Feedback
+
+Deploy backend to a small VPS / Laravel Forge / Render.
+
+Deploy frontend (PWA) to Netlify or Vercel.
+
+Invite a few testers → gather feedback.
+
+_______________________________________
+COACH RULES:
+https://docs.google.com/spreadsheets/d/1h2IHwstejCwuGxbJmENVEDjoTdEZ2LZp8w05l7nTbLI/edit?gid=0#gid=0
+_______________________________________
