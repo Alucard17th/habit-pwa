@@ -52,7 +52,7 @@ import { useInstallPrompt } from "./hooks/useInstallPrompt";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import { PaywallProvider } from "./paywall/usePaywall";
 import GlobalAtomicHabitLauncher from "./components/GlobalAtomicHabitLauncher";
-// import QuickLog from "./components/QuickLog";
+import QuickLog from "./components/QuickLog";
 
 function useActivePath() {
   const { pathname } = useLocation();
@@ -290,7 +290,7 @@ function Shell() {
           <Route path="/billing/success" element={<BillingSuccess />} />
         </Routes>
       </Container>
-      {/* <QuickLog /> */}
+      <QuickLog />
       <GlobalAtomicHabitLauncher />
     </>
   );

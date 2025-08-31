@@ -10,8 +10,6 @@ import reportWebVitals from "./reportWebVitals";
 const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
 
-console.log('REACT_APP_API_BASE (build-time):', process.env.REACT_APP_API_BASE);
-
 root.render(
   <React.StrictMode>
     <App />
