@@ -52,7 +52,7 @@ import { useInstallPrompt } from "./hooks/useInstallPrompt";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import { PaywallProvider } from "./paywall/usePaywall";
 import GlobalAtomicHabitLauncher from "./components/GlobalAtomicHabitLauncher";
-import QuickLog from "./components/QuickLog";
+// import QuickLog from "./components/QuickLog";
 
 function useActivePath() {
   const { pathname } = useLocation();
@@ -107,11 +107,16 @@ function MobileDrawer({
   onClose: () => void;
 }) {
   const isActive = useActivePath();
-  const navItems = [
-    { to: "/", label: "Today" },
-    { to: "/new", label: "New Habit" },
-    { to: "/analytics", label: "Analytics" },
-  ];
+  const navItems = useMemo(
+    () => [
+      { to: "/", label: "Today" },
+      // { to: "/new", label: "New Habit" },
+      { to: "/analytics", label: "Analytics" },
+      { to: "/coach", label: "Coach" },
+      { to: "/weekly", label: "Weekly Review" },
+    ],
+    []
+  );
 
   return (
     <Drawer anchor="left" open={open} onClose={onClose}>
@@ -285,7 +290,7 @@ function Shell() {
           <Route path="/billing/success" element={<BillingSuccess />} />
         </Routes>
       </Container>
-      <QuickLog />
+      {/* <QuickLog /> */}
       <GlobalAtomicHabitLauncher />
     </>
   );
@@ -318,26 +323,3 @@ export default function App() {
     </ThemeModeProvider>
   );
 }
-
-// export default function App() {
-//   const { mode } = useThemeMode();
-//   const theme = React.useMemo(() => createAppTheme({ mode }), [mode]);
-
-//   return (
-//     <ThemeModeProvider>
-//       <ThemeProvider theme={theme}>
-//         <CssBaseline />
-//         <AuthProvider>
-//           <PaywallProvider>
-//             <BrowserRouter>
-//               <Routes>
-//                 <Route path="/login" element={<Login />} />
-//                 <Route path="/*" element={<Shell />} />
-//               </Routes>
-//             </BrowserRouter>
-//           </PaywallProvider>
-//         </AuthProvider>
-//       </ThemeProvider>
-//     </ThemeModeProvider>
-//   );
-// }
