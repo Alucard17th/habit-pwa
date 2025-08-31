@@ -59,3 +59,163 @@ _______________________________________
 COACH RULES:
 https://docs.google.com/spreadsheets/d/1h2IHwstejCwuGxbJmENVEDjoTdEZ2LZp8w05l7nTbLI/edit?gid=0#gid=0
 _______________________________________
+
+📝 MVP Feature List — Habit & Focus Tracker (Gamified PWA)
+1. Core Features (Free Tier)
+
+User Registration / Login
+
+Email + password (or social login if time permits).
+
+Guest mode (optional: store data locally without account).
+
+Habit Creation
+
+Add a new habit (e.g., “Drink water 3x/day”).
+
+Options: name, frequency (daily/weekly), time reminders (optional MVP).
+
+Habit Dashboard
+
+Today’s habits listed with check/uncheck.
+
+Streak counter per habit (e.g., 🔥 “12 days in a row”).
+
+Simple progress circle or bar per habit.
+
+Gamification
+
+Streaks → keep users motivated.
+
+Badges (basic: 7 days streak, 30 days streak).
+
+XP points (optional MVP).
+
+Offline Support (PWA Power)
+
+Works offline using IndexedDB/LocalStorage.
+
+Sync with Laravel backend when back online.
+
+Installable as an app (homescreen).
+
+2. Premium (One-Time Unlock $10–20)
+
+Unlimited Habits (free version capped at 3–5 habits).
+
+Advanced Analytics
+
+Weekly/monthly streak chart (using Recharts/Chart.js).
+
+Export
+
+Export habit history to CSV/PDF.
+
+Themes
+
+Dark mode + custom colors.
+
+Backup & Sync
+
+Cloud sync via Laravel backend.
+
+3. Extra (Future Updates, Not in MVP)
+
+Social features (share streaks with friends).
+
+AI suggestions (analyze habits, give improvement tips).
+
+Group challenges (gamify with friends/teams).
+
+Wearable integration (Fitbit, Apple Health).
+
+🔄 Async Flow (User Journey)
+
+Onboarding
+→ User lands → short intro (“Track your habits, build streaks, stay focused”).
+→ Option: create account or continue offline.
+
+Add Habit
+→ User inputs habit → chooses frequency → saves.
+
+Daily Use
+→ Opens app → marks habits as done/not done.
+→ Streak updates in real time.
+→ Gamification element shows badge progress.
+
+Premium Prompt
+→ After adding 3rd habit → modal: “Unlock unlimited habits + analytics for $15 (one-time).”
+
+Payment & Upgrade
+→ Stripe/Gumroad checkout.
+→ Account flagged as premium.
+→ Premium features unlocked instantly.
+
+⚡ Tech Implementation
+Backend (Laravel)
+
+Auth (Sanctum/JWT).
+
+Habit model: habits (id, user_id, name, frequency, streak, created_at).
+
+Log model: habit_logs (id, habit_id, date, status).
+
+Subscription flag in users table (is_premium).
+
+Stripe/Gumroad integration (one-time).
+
+Frontend (React PWA)
+
+Service Worker (Workbox) for offline mode + caching.
+
+IndexedDB for offline habit logs.
+
+Sync queue with Laravel API (when online).
+
+Recharts/Chart.js for analytics.
+
+Tailwind or MUI for UI speed.
+
+📅 One-Month Build Plan
+Week 1: Setup
+
+Project setup: Laravel API + React PWA.
+
+Auth, DB schema, basic routes.
+
+PWA boilerplate (installable, offline caching).
+
+Week 2: Core Habits
+
+Habit creation + logs.
+
+Dashboard UI with streaks.
+
+Offline mode working.
+
+Week 3: Premium Features
+
+Add export + dark mode.
+
+Stripe/Gumroad payment flow.
+
+Lock “more than 3 habits” behind paywall.
+
+Week 4: Polish + Launch
+
+Add badges + gamification.
+
+Landing page + Gumroad listing.
+
+Launch on Product Hunt, Reddit, TikTok.
+
+_____________________________________
+Upload on Gumroad + AppSumo + Product Hunt.
+
+Product Hunt: gallery, short video, 2–3 screenshots, founder comment.
+
+Reddit: r/productivity, r/selfimprovement, r/SideProject (show demo + discount code).
+
+TikTok/Instagram Reels: 15-sec demo “I built an offline habit tracker; $15 lifetime.”
+
+Gumroad/AppSumo: Product page mirrors landing; add 3 screenshots + GIF.
