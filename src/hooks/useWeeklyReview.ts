@@ -11,7 +11,7 @@ export function useWeeklyReview() {
     setLoading(true);
     setError(null);
     try {
-      const res = await getWeeklyReview(refresh);
+      const res = await getWeeklyReview(true);
       setData(res.data);
       setCached(res.cached);
     } catch (e) {

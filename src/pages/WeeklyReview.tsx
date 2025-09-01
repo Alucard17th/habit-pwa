@@ -86,7 +86,7 @@ export default function WeeklyReview() {
                 <EmojiEventsIcon fontSize="small" />
                 <Typography variant="h6">Wins</Typography>
               </Stack>
-              {data.wins.length ? (
+              {data?.wins?.length ? (
                 <List dense>
                   {data.wins.map((w, i) => (
                     <ListItem key={i} disableGutters>
@@ -113,7 +113,7 @@ export default function WeeklyReview() {
                 <ReportProblemIcon fontSize="small" />
                 <Typography variant="h6">Stumbles</Typography>
               </Stack>
-              {data.stumbles.length ? (
+              {data?.stumbles?.length ? (
                 <List dense>
                   {data.stumbles.map((s, i) => (
                     <ListItem key={i} disableGutters>
@@ -140,7 +140,7 @@ export default function WeeklyReview() {
                 <InsightsIcon fontSize="small" />
                 <Typography variant="h6">Patterns</Typography>
               </Stack>
-              {data.patterns.length ? (
+              {data?.patterns?.length ? (
                 <List dense>
                   {data.patterns.map((p, i) => (
                     <ListItem key={i} disableGutters>
@@ -167,7 +167,7 @@ export default function WeeklyReview() {
                 <TaskAltIcon fontSize="small" />
                 <Typography variant="h6">Next actions</Typography>
               </Stack>
-              {data.next_actions.length ? (
+              {data?.next_actions?.length ? (
                 <List dense>
                   {data.next_actions.map((a, i) => (
                     <ListItem key={i} disableGutters>
