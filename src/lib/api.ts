@@ -216,3 +216,6 @@ export const createHabitFromAtomic = (goal: string, plan: {
   });
 };
 
+// ---- Profile: License verification
+export const verifyLicense = (payload: { license_key: string }) =>
+  api.post("/me/verify-license", payload).then((r) => r.data);

@@ -43,7 +43,7 @@ import {
 } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import MenuIcon from "@mui/icons-material/Menu";
-import WaterDropOutlinedIcon from "@mui/icons-material/WaterDropOutlined";
+import CheckIcon from "@mui/icons-material/Check";
 import { startLocalReminderLoop } from "./lib/reminderScheduler";
 import { RequireHabitLimit } from "./routes/RequireHabitLimit";
 import { ThemeModeProvider, useThemeMode } from "./context/ThemeModeContext";
@@ -127,8 +127,8 @@ function MobileDrawer({
           spacing={1.2}
           sx={{ px: 2, py: 1 }}
         >
-          <WaterDropOutlinedIcon />
-          <Typography variant="h6">HabitPWA</Typography>
+          <CheckIcon />
+          <Typography variant="h6">DailyClarity</Typography>
         </Stack>
         <Divider />
         <List sx={{ py: 0 }}>
@@ -188,12 +188,12 @@ function Shell() {
 
           {/* Brand */}
           <Stack direction="row" spacing={1} alignItems="center" sx={{ mr: 1 }}>
-            <WaterDropOutlinedIcon color="primary" />
+            <CheckIcon fontSize="large" color="primary" />
             <Typography
               variant="h6"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              HabitPWA
+              DailyClarity
             </Typography>
           </Stack>
 

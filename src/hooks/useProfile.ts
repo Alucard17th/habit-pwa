@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { updatePassword, updateProfile } from "../lib/api";
+import { updatePassword, updateProfile, verifyLicense } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 
 export function useProfile() {
@@ -79,4 +79,49 @@ export function usePasswordChange() {
   const reset = () => setValues({ current_password: "", password: "", password_confirmation: "" });
 
   return { values, onChange, canSubmit, save, saving, error, fieldErrors, reset, minLen };
+}
+
+export function useLicenseVerification() {
+  const [values, setValues] = useState({ license_key: "" });
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
+  const [verifiedData, setVerifiedData] = useState<any | null>(null);
+
+  // Keep it lenient: adjust rule if you want
+  const canSubmit = useMemo(
+    () => values.license_key.trim().length >= 6,
+    [values.license_key]
+  );
+
+  const onChange = useCallback((v: string) => {
+    setValues({ license_key: v });
+    setVerifiedData(null);
+  }, []);
+
+  const verify = useCallback(async () => {
+    setSaving(true);
+    setError(null);
+    setFieldErrors({});
+    try {
+      const data = await verifyLicense({ license_key: values.license_key.trim() });
+      setVerifiedData(data); // keep whatever backend returns (plan, expires, etc.)
+      return { ok: true, data };
+    } catch (e: any) {
+      setError(e.message || "Failed to verify license.");
+      if (e.fields) setFieldErrors(e.fields);
+      return { ok: false };
+    } finally {
+      setSaving(false);
+    }
+  }, [values.license_key]);
+
+  const reset = () => {
+    setValues({ license_key: "" });
+    setVerifiedData(null);
+    setError(null);
+    setFieldErrors({});
+  };
+
+  return { values, onChange, canSubmit, verify, saving, error, fieldErrors, verifiedData, reset };
 }

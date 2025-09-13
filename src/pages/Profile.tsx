@@ -1,9 +1,9 @@
 import * as React from "react";
 import {
   Stack, Typography, TextField, Button, Alert, Dialog, DialogTitle,
-  DialogContent, DialogActions, Snackbar
+  DialogContent, DialogActions, Snackbar, Divider, Paper
 } from "@mui/material";
-import { usePasswordChange, useProfile } from "../hooks/useProfile";
+import { usePasswordChange, useProfile, useLicenseVerification } from "../hooks/useProfile";
 
 export default function Profile() {
   const {
@@ -19,11 +19,12 @@ export default function Profile() {
   };
 
   return (
-    <Stack spacing={3}>
+    <Stack spacing={4}>
       <Typography variant="h5">Profile</Typography>
 
       {error && <Alert severity="error">{error}</Alert>}
 
+      {/* Profile info */}
       <Stack spacing={2} maxWidth={480}>
         <TextField
           label="Name"
@@ -50,7 +51,16 @@ export default function Profile() {
         </Stack>
       </Stack>
 
-      <PasswordDialog open={pwdOpen} onClose={() => setPwdOpen(false)} onDone={() => setSnack("Password updated")} />
+      <Divider />
+
+      {/* License verification */}
+      <LicenseBox onVerified={(msg) => setSnack(msg)} />
+
+      <PasswordDialog
+        open={pwdOpen}
+        onClose={() => setPwdOpen(false)}
+        onDone={() => setSnack("Password updated")}
+      />
 
       <Snackbar
         open={!!snack}
@@ -59,6 +69,56 @@ export default function Profile() {
         message={snack ?? ""}
       />
     </Stack>
+  );
+}
+
+function LicenseBox({ onVerified }: { onVerified: (msg: string) => void }) {
+  const {
+    values, onChange, canSubmit, verify, saving, error, fieldErrors, verifiedData, reset
+  } = useLicenseVerification();
+
+  const handleVerify = async () => {
+    const res = await verify();
+    if (res.ok) {
+      onVerified("License verified");
+    }
+  };
+
+  return (
+    <Paper variant="outlined" sx={{ p: 2, maxWidth: 480 }}>
+      <Stack spacing={2}>
+        <Typography variant="h6">License</Typography>
+
+        {error && <Alert severity="error">{error}</Alert>}
+        {verifiedData && (
+          <Alert severity="success">
+            License verified successfully.
+          </Alert>
+        )}
+
+        <TextField
+          label="License code"
+          value={values.license_key}
+          onChange={(e) => onChange(e.target.value)}
+          error={!!fieldErrors.license_key}
+          helperText={fieldErrors.license_key?.[0]}
+          placeholder="XXXX-XXXX-XXXX-XXXX"
+        />
+
+        <Stack direction="row" spacing={1}>
+          <Button
+            variant="contained"
+            onClick={handleVerify}
+            disabled={!canSubmit || saving}
+          >
+            {saving ? "Verifying..." : "Verify license"}
+          </Button>
+          <Button variant="text" onClick={reset} disabled={saving}>
+            Clear
+          </Button>
+        </Stack>
+      </Stack>
+    </Paper>
   );
 }
 
